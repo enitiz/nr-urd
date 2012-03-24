@@ -1,0 +1,17 @@
+# == Schema Information
+#
+# Table name: students
+#
+#  id         :integer         not null, primary key
+#  rollnum    :integer
+#  positions  :string(255)
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+
+class Student < ActiveRecord::Base 
+
+# Associations
+has_one :member
+
+end
