@@ -1,21 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  rollnum: 1
-  positions: MyString
+  title: MyString
+  content: MyText
+  points: 1
+  member_id: 1
 
 two:
-  rollnum: 1
-  positions: MyString
+  title: MyString
+  content: MyText
+  points: 1
+  member_id: 1
 # == Schema Information
 #
-# Table name: students
+# Table name: posts
 #
 #  id         :integer         not null, primary key
-#  rollnum    :integer
-#  positions  :string(255)
+#  title      :string(255)
+#  content    :text
+#  points     :integer
+#  member_id  :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
-#  member_id  :integer
 #
 

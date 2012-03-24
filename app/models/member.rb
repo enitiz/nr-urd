@@ -29,7 +29,8 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  								:name, :joined_on, :department_id, :student_attributes
+  								:name, :joined_on, :department_id, :student_attributes,
+  								:nstudent_attributes
   
   #Associations
   belongs_to :department
@@ -39,5 +40,7 @@ class Member < ActiveRecord::Base
   
   has_one :nstudent, :dependent => :destroy
   accepts_nested_attributes_for :nstudent
+  
+  has_many :posts, :dependent => :destroy
   
 end

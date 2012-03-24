@@ -1,4 +1,6 @@
 Urdxxx::Application.routes.draw do
+  resources :posts
+
   devise_for :members
 
   # The priority is based upon order of creation:

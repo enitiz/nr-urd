@@ -1,0 +1,6 @@
+class Comment < ActiveRecord::Base
+
+	#Associations
+	belongs_to :user, :dependent => :destroy
+	belongs_to :posts, :dependent => :destroy
+end

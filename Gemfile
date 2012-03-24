@@ -7,7 +7,8 @@ gem 'rails', '3.2.2'
 
 gem 'sqlite3'
 gem 'devise'
-gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+gem 'annotate', '~> 2.4.1.beta'
+gem 'ancestry'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -19,12 +19,8 @@
 	<%= f.select(:joined_on, ((Time.now.year-40).to_i..(Time.now.year.to_i)).to_a.reverse) %></div>
 
   <div><%= f.label :department %><br />
-  <%= f.collection_select :department_id, Department.all, :id, :name %></div>
+  <%= f.collection_select (:department_id, Department.all, :id, :name) %></div>
  
-	<div><%= f.label :i_am_a_student %><br />
-  <%= f.check_box  %></div>
-
-		
 	<% @member.build_student if @member.student.nil? %>
 	<%= f.fields_for :student do |s| %>
 		
@@ -33,7 +29,6 @@
 		
 		<div><%= s.label :positions_held %><br />
 		<%= s.text_field :positions %></div>
-		
 		
 	<% end %>
 
