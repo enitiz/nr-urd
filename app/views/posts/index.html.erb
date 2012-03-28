@@ -1,33 +1,43 @@
 <h1>Listing posts</h1>
 
+<div id="member_nav">
+  <% if member_signed_in? %>
+    Signed in as <%= current_member.name %>. Not you?
+    <%= link_to "Sign out", destroy_member_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_member_registration_path %> or <%= link_to "sign in", new_member_session_path %>
+  <% end %>
+</div>
+
 <table>
   <tr>
     <th>Title</th>
     <th>Content</th>
-    <th>Points</th>
     <th>Member</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Created on</th>
+    <th>Upvotes</th>
+    <th>Downvotes</th>
+    <th>Unvote</th>
   </tr>
 
 <% @posts.each do |post| %>
   <tr>
     <td><%= link_to post.title , post %></td>
     <td><%= post.content %></td>
-    <td><%= post.points %></td>
     <td><%= post.member.name %> (<%= post.member.department.name %>)</td>
-    <td></td>
-    <% if post.member_id = 0 %>
-    <% then %>
+    <td><%= time_ago_in_words(post.created_at) %></td>
+    <td><%= post.up_votes %> <%= link_to 'Upvote', upvote_post_path(post)%></td>
+    <td><%= post.down_votes %> <%= link_to 'Downvote', downvote_post_path(post)%></td>
+		<td><%= link_to 'Unvote', unvote_post_path(post)%></td>
+   <!-- 
+    <% if post.member_id == current_member.id %>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
+   	<% end %>
+   	
+   	<% if (post.member_id == current_member.id) || (current_member.admin == true) %>
+    <td><%= link_to 'Remove', post, confirm: 'Are you sure?', method: :delete %></td>
     <% end %>
-   
-    
-    <%= if post.member_id = current_member.id && current_member.admin = true %>
-    <% then %>
-    <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
-    <% end %>
+    -->
     
   </tr>
 <% end %>

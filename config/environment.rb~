@@ -4,4 +4,4 @@ require File.expand_path('../application', __FILE__)
 # Initialize the rails application
 Urdxxx::Application.initialize!
 
-
+config.gem "kandadaboggu-vote_fu", :lib => 'vote_fu', :source => "http://gemcutter.org"

@@ -19,9 +19,13 @@
 #  department_id          :integer
 #  created_at             :datetime        not null
 #  updated_at             :datetime        not null
+#  up_votes               :integer         default(0), not null
+#  down_votes             :integer         default(0), not null
 #
 
 class Member < ActiveRecord::Base
+  # acts_as_voter
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -31,6 +35,7 @@ class Member < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   								:name, :joined_on, :department_id, :student_attributes,
   								:nstudent_attributes
+  
   
   #Associations
   belongs_to :department
@@ -42,5 +47,6 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :nstudent
   
   has_many :posts, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   
 end

@@ -1,0 +1,10 @@
+<div class="hero-unit center">
+	<h1>Project URD</h1>
+	<h2>NIT Raipur Chapter</h2>
+	<p>An vote based issue tracker and discussion forum for colleges</p>
+	<div class="reg">
+	<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  	<%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-large" %><br />
+	<% end -%>
+	</div>
+</div>

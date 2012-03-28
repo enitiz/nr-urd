@@ -7,7 +7,7 @@
 		<p></p>
 	</div>
 	<div class="span4">
-		<h3 class="center">Sign in</h3>
+		<h3 class="center">Sign in</h2>
 		<%= form_for(resource, html: { class: "well center" }, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 			<%= f.email_field :email, placeholder: 'Email Address' %>
 			<br />
