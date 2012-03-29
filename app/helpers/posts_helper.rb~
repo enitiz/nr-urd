@@ -1,6 +1,10 @@
 module PostsHelper
-	
-	def increment_points(points)
-		points += 2
+
+	def count(post)
+		if sum.nil?
+			sum = 1
+		else
+			sum + 1
+		end
 	end
 end

@@ -1,6 +1,5 @@
 module PostsHelper
-	
-	def increment_points(points)
-		points += 1
+
+	def count(post)
 	end
 end

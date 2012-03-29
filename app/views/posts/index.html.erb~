@@ -1,49 +1,58 @@
-<h1>Listing posts</h1>
+<%= provide(:title, 'Home') %>
 
-<div id="member_nav">
-  <% if member_signed_in? %>
-    Signed in as <%= current_member.name %>. Not you?
-    <%= link_to "Sign out", destroy_member_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_member_registration_path %> or <%= link_to "sign in", new_member_session_path %>
-  <% end %>
+<div class="page-header">
+	<h1>Issues and Topics <small>related to NIT Raipur</small></h1>
 </div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Points</th>
-    <th>Member</th>
-    <th>Created on</th>
-    <th>Upvotes</th>
-    <th>Downvotes</th>
-    <th>Unvote</th>
-  </tr>
-
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= link_to post.title , post %></td>
-    <td><%= post.content %></td>
-    <td><%= post.member.name %> (<%= post.member.department.name %>)</td>
-    <td><%= time_ago_in_words(post.created_at) %></td>
-    <td><%= post.up_votes %> <%= link_to 'Upvote', upvote_post_path(post)%></td>
-    <td><%= post.down_votes %> <%= link_to 'Downvote', downvote_post_path(post)%></td>
-		<td><%= link_to 'Unvote', unvote_post_path(post)%></td>
-   <!-- 
-    <% if post.member_id == current_member.id %>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-   	<% end %>
-   	
-   	<% if (post.member_id == current_member.id) || (current_member.admin == true) %>
-    <td><%= link_to 'Remove', post, confirm: 'Are you sure?', method: :delete %></td>
-    <% end %>
-    -->
-    
-  </tr>
+<% @posts.each_with_index do |post, index| %>
+	<div class = "well post">
+		<div class = "name left"> 
+															 <% if post.member.nstudent.nil? %>
+																 	<i class="icon-barcode"></i> <%= post.member.student.rollnum.to_s.rjust(8, '0') %><br />
+																 	<i class="icon-pencil"></i> <%= post.member.name %><br />
+																	<i class="icon-book"></i> <%= post.member.department.name %> (<%= post.member.joined_on %>)<br />
+																	<% if !post.member.student.positions.nil? %>
+																		<i class="icon-star"></i> <%= post.member.student.positions %> Member<br />
+																	<% end %>
+																	<% if post.member.admin? %>
+																		<i class="icon-eye-open"></i> Admin<br />
+																	<% end %>
+															 <% else %>
+															 		<i class="icon-user"></i> <%= post.member.nstudent.title %> <%= post.member.name %> <br />
+															 		<%= post.member.nstudent.designation %> at<br /> 
+																	
+																	<% if post.member.nstudent.designated_to.empty? and !post.member.department.nil? %>
+																		<i class="icon-home"></i> <%= post.member.department.name %> (<%= post.member.joined_on %>)<br />
+																	<% elsif post.member.department.nil? and !post.member.nstudent.designated_to.empty? %>
+																		<i class="icon-star"></i> <%= post.member.nstudent.designated_to %> (<%= post.member.joined_on %>)<br />
+																	<% elsif !post.member.department.nil? and !post.member.nstudent.designated_to.empty? %>
+																		<i class="icon-star"></i> <%= post.member.nstudent.designated_to %> and <br />
+																		<i class="icon-star"></i> <%= post.member.department.name %> (<%= post.member.joined_on %>)<br />
+																	<% else %>
+																		<i class="icon-ban-circle"></i> Unspecified <br/>
+																	<% end %>
+																	
+																	<i class="icon-check"></i> <%= post.member.nstudent.qualification %><br /> 
+																	<% if post.member.admin? %>
+																		<i class="icon-eye-open"></i> Admin<br />
+																	<% end %>
+															 <% end %>
+ 
+		</div>
+		<div class = "votes right">
+		 														<i class="icon-arrow-up"></i>
+																<%= link_to 'Upvote', upvote_post_path(post)%> (<%= post.up_votes %>)<br />
+		 														<i class="icon-arrow-down"></i>
+																<%= link_to 'Downvote', downvote_post_path(post)%> (<%= post.down_votes %>)<br />
+																<i class="icon-resize-horizontal"></i>
+																<%= link_to 'Unvote', unvote_post_path(post)%> 
+		</div>
+		<div class = "rank right"> post is in <%= (index + 1).ordinalize %> position </div>
+		<div class = "comm right"> <i class="icon-comment"></i> <%= pluralize(post.comments.count, 'comment') %></div>
+		<div class = "time right"> <i class="icon-time"></i> <%= time_ago_in_words(post.created_at) %> ago </div>
+		<div class = "title center"> <%= link_to post.title , post %> </div>
+		<div class = "content"> <%= truncate( post.content, length: 190, omission: '... (continued)') %> </div>
+		<br />
+	</div>
+	<hr />
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Post', new_post_path %>

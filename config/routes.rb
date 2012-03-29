@@ -1,7 +1,7 @@
 Urdxxx::Application.routes.draw do
 
-
   devise_for :members
+
   resources :posts do
   	get :upvote, 			on: :member
   	get :downvote, 		on: :member

@@ -14,7 +14,9 @@
 
 <%= yield %>
 
+<%= render 'layouts/footer' %>
 
-<%= render 'layouts/header' %>
+<%= render 'layours/js' %>
+
 </body>
 </html>

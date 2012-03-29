@@ -1,34 +1,35 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<br /><br />
 
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row-fluid">
+	<div class="span3">
+		<p></p>
+	</div>
+	
+	<div class="span6">
+		<%= form_for(@post) do |f| %>
+				<% if @post.errors.any? %>
+					<div id="error_explanation">
+						<h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <!-- <div class="field">
-    <%= f.label :points %><br />
-    <%= f.number_field :points %>
-  </div>
-   <div class="field">
-    <%= f.label :member_id %><br />
-    <%= f.number_field :member_id %>
-  </div> -->
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+						<ul>
+						<% @post.errors.full_messages.each do |msg| %>
+						  <li><%= msg %></li>
+						<% end %>
+						</ul>
+					</div>
+				<% end %>
+
+					<%= f.label :title %>
+					<%= f.text_field :title, class: 'input-xxlarge' %>
+					<br />
+					<%= f.label :content %>
+					<%= f.text_area :content, class: 'input-xxlarge' %>
+					<br />
+					<%= f.submit 'Create / Update Post', class: 'btn btn-large btn-primary' %>
+			<% end %>
+		</div>
+	
+	<div class="span3">
+		<p></p>
+	</div>
+</div>

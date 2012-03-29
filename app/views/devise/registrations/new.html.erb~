@@ -1,58 +1,85 @@
-<h2>Sign up</h2>
+<%= provide(:title, 'Sign up') %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-  
-  <div><%= f.label :joined_nit_raipur_in %><br />
-	<%= f.select(:joined_on, ((Time.now.year-40).to_i..(Time.now.year.to_i)).to_a.reverse) %></div>
-
-  <div><%= f.label :department %><br />
-  <%= f.collection_select (:department_id, Department.all, :id, :name) %></div>
- 
-	<% @member.build_student if @member.student.nil? %>
-	<%= f.fields_for :student do |s| %>
-		
-		<div><%= s.label :roll_number %><br />
-		<%= s.text_field :rollnum %></div>
-		
-		<div><%= s.label :positions_held %><br />
-		<%= s.text_field :positions %></div>
-		
-	<% end %>
-
-	<% @member.build_nstudent if @member.nstudent.nil? %>
-	<%= f.fields_for :nstudent do |ns| %>
+<div class="row-fluid">
+	<div class="span4">
+		<p></p>
+	</div>
+	<div class="span4">
+		<h6 class="center">Sign up</h6>
+		<ul id="tab" class="nav nav-tabs">
+			<li class="active"><a href="#student" data-toggle="tab">As a Student</a></li>
+			<li><a href="#nstudent" data-toggle="tab">As a Faculty / Administrator</a></li>
+		</ul>
+		 
+		<div class="tab-content">
+			
+			<div class="tab-pane fade in active" id="student">
+			
+				<%= form_for(resource, html: { class: "well center" }, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  				<%= devise_error_messages! %>
+  				
+  				<%= f.text_field :name, placeholder: "Full Name" %><br />
+  				<%= f.email_field :email, placeholder: "Email Address" %><br />
+  				<%= f.password_field :password, placeholder: "Password" %><br />
+  				<%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br />
+  				
+  				Joined NIT Raipur on<br />
+  				<%= f.select(:joined_on, ((Time.now.year-40).to_i..(Time.now.year.to_i)).to_a.reverse) %><br />
+  				
+  				Department<br />
+  				<%= f.collection_select :department_id, Department.all, :id, :name %><br />
+  				
+  				<% @member.build_student if @member.student.nil? %>
+					<%= f.fields_for :student do |s| %>
+						<%= s.text_field :rollnum, placeholder: "Roll Number" %><br />
+						<%= s.text_field :positions, placeholder: "Committee Name (if any)" %><br />
+						<%= f.submit "Sign up", class: "btn btn-large btn-primary" %>
+					<% end %>
 	
-		<div><%= ns.label :title %><br />
-		<%= ns.select(:title, %w{ Mr. Ms. Mrs. Dr. Prof. Shri Smt Sir Madam }) %>
+  			<% end %>
+			</div>
+			
+			<div class="tab-pane fade" id="nstudent">
+			
+				<%= form_for(resource, html: { class: "well center" }, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  				<%= devise_error_messages! %>
+  				
+  				<%= f.text_field :name, placeholder: "Full Name" %><br />
+  				<%= f.email_field :email, placeholder: "Email Address" %><br />
+  				<%= f.password_field :password, placeholder: "Password" %><br />
+  				<%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br />
+  				
+  				Joined NIT Raipur on<br />
+  				<%= f.select(:joined_on, ((Time.now.year-40).to_i..(Time.now.year.to_i)).to_a.reverse) %><br />
+				
+  				Department<br />
+  				<%= f.collection_select :department_id, Department.all, :id, :name %><br />
+  				
+					<% @member.build_nstudent if @member.nstudent.nil? %>
+						<%= f.fields_for :nstudent do |ns| %>
+	
+							Title<br />
+							<%= ns.select(:title, %w{ Mr. Ms. Mrs. Dr. Prof. Shri Smt Sir Madam }) %><br />
 		
-		<div><%= ns.label :designation %><br />
-		<%= ns.select(:designation,
-		 %w{ Chairman Director Registrar Dean 
-		 HOD Reader Professor Associate-Professor Assistant-Professor
-		 Lecturer AWS}) %></div>
-		 
-		 <div><%= ns.label :designated_to %><br />
-		 <%= ns.text_field :designated_to %></div>
-		 
-		 <div><%= ns.label :qualification %><br />
-		 <%= ns.text_field :qualification %></div>
-		 
-	<% end %>
+							Designation<br />
+							<%= ns.select(:designation,
+							 %w{ Chairman Director Registrar Dean 
+							 HOD Reader Professor Associate-Professor Assistant-Professor
+							 Lecturer AWS}) %><br />
+							 
+							 <%= ns.text_field :designated_to, placeholder: "Designated to (if dept. unlisted)" %><br />
+							 
+							 <%= ns.text_field :qualification, placeholder: "Qualifications" %><br />
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "links" %>
+							<%= f.submit "Sign up", class: "btn btn-large btn-primary" %>							 
+						<% end %>
+				
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<p></p>
+	</div>
+</div>

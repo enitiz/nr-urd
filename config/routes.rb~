@@ -1,16 +1,17 @@
 Urdxxx::Application.routes.draw do
 
-
   devise_for :members
+
   resources :posts do
-  	get :upvote, on: :member
-  	get :downvote, on: :member
-  	get :unvote, on: :member
-  	get :upvotecom, on: :member
+  	get :upvote, 			on: :member
+  	get :downvote, 		on: :member
+  	get :unvote, 			on: :member
+  	get :upvotecom, 	on: :member
   	get :downvotecom, on: :member
-  	get :unvotecom, on: :member
+  	get :unvotecom, 	on: :member
   end
   
+  match 'members/sign_in' to '/sign_in'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

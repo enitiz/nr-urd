@@ -1,13 +1,80 @@
 @import "bootstrap";
 
-.center {
-	text-align: center;
+body {
+	margin-left: 1%;
+	margin-right: 1%;
 }
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 3;
 }
 
-.reg {
+.showcontent {
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	p { 
+		font-family: Garamond, Georgia, "Times New Roman", serif;
+		font-size: 1.4em;
+		line-height: 1.5em;
+	 }
+	 br {
+	 	line-height: 1em;
+	 	width: 1em;
+	 }
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.post {
+	margin-left: 10%;
+	margin-right: 10%;
+	clear: both;
 	
+	.rank, .time, .comm {
+		font-size: 80%;
+		margin-top: 0.1%;
+		clear: right;
+	}
+	
+	.name {
+		font-size: 80%;
+	}
+	
+	.title {
+		font-size: 150%;
+		margin-left: 25%;
+		margin-right: 20%;
+	}
+	
+	.content {
+		margin-top: 25px;
+		margin-left: 25%;
+		margin-right: 20%; 	
+		font-family: Garamond, Georgia, "Times New Roman", serif;
+		font-size: 100%;
+		line-height: 1.35em;
+	}
+	
+	.votes {
+		font-size: 80%;
+	}
+}
+
+.stats {
+	margin: 0;
+	padding: 0;
+	background: #FCF8DC;
+	border-radius: 4px;
 }

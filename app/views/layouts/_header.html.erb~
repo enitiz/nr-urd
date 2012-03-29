@@ -6,14 +6,29 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
 			</a>
-	    <a class="brand" href="#">Project URD</a>
+	    <%= link_to 'Project URD', root_path, class: 'brand' %>
 			<div class="nav-collapse">
 	    	<ul class="nav">
-	      	<li class="active"><a href="#">Home</a></li>
+          <% if member_signed_in? %>
+          <li><%= link_to 'New Post', new_post_path %></li>
+          <% end %>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
 				</ul>
-				<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+				<% if member_signed_in? %>
+				<ul class="nav pull-right">
+        	<li id="fat-menu" class="dropdown">
+		      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged in as <%= current_member.name %> <b class="caret"></b></a>
+		        <ul class="dropdown-menu">
+		        	<li><a href="#"></a></li>
+		          <li><%= link_to 'Change Details', edit_member_registration_path %></li>
+		          <li><%= link_to 'Cancel Account?', cancel_member_registration_path %></li>
+		          <li class="divider"></li>
+		          <li><%= link_to "Sign out", destroy_member_session_path, :method => :delete %></li>
+		        </ul>
+         	</li>
+        </ul>
+				<% end %>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>

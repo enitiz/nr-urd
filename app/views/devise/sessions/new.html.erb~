@@ -7,7 +7,7 @@
 		<p></p>
 	</div>
 	<div class="span4">
-		<h3 class="center">Sign in</h2>
+		<h6 class="center">Sign in</h6>
 		<%= form_for(resource, html: { class: "well center" }, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 			<%= f.email_field :email, placeholder: 'Email Address' %>
 			<br />
@@ -18,7 +18,14 @@
 			<% end -%>
 			<br /> <br />
 			<%= f.submit "Sign in to URD", class: "btn btn-large btn-success" %>
+			<br /> <br />
+			<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+  			<%= link_to "Forgot your password?", new_password_path(resource_name) %>
+			<% end -%>
 		<% end %>
+	</div>
+	<div class="span4">
+		<p></p>
 	</div>
 </div>
 <%= render "links" %>
