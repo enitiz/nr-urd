@@ -14,7 +14,17 @@
 
 class Nstudent < ActiveRecord::Base
 
-# Associations
-belongs_to :member
+	# Associations
+	belongs_to :member, inverse_of: :department
+	
+	# Validations
+		validates :title, :designation, :qualification, presence: { message: "can't be blank" } 		
+		validates :title, 
+			inclusion: { in: %w{ Mr. Ms. Mrs. Dr. Prof. Shri Smt Sir Madam },
+									 message: "%{value} is not a valid title" }
+									 
+		validates :designation,
+			inclusion: { in: %w{ Chairman Director Registrar Dean HOD Reader Professor Associate-Professor Assistant-Professor Lecturer AWS},
+									 message: "%{value} is not a valid title" }
 
 end

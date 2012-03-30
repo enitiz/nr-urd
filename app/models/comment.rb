@@ -4,7 +4,6 @@
 #
 #  id         :integer         not null, primary key
 #  content    :string(255)
-#  points     :integer
 #  member_id  :integer
 #  post_id    :integer
 #  created_at :datetime        not null
@@ -20,6 +19,8 @@ class Comment < ActiveRecord::Base
 	belongs_to :member
 	belongs_to :post
 	
-	validates_presence_of :content
+	# Validations
+		validates :content, presence: true, length: { minimum: 10 }
+									
 end
 

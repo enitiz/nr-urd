@@ -10,10 +10,10 @@
 
 class Department < ActiveRecord::Base
 
-
-class Department < Member
-
-# Associations
-# has_one :member
-
+	# Associations
+	has_one :member, inverse_of: :department
+	
+	# Validations
+	validates :name, presence: true
+	
 end

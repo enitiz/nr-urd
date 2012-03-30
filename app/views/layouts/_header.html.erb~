@@ -22,7 +22,7 @@
 		        <ul class="dropdown-menu">
 		        	<li><a href="#"></a></li>
 		          <li><%= link_to 'Change Details', edit_member_registration_path %></li>
-		          <li><%= link_to 'Cancel Account?', cancel_member_registration_path %></li>
+		          <li><%= link_to 'Cancel Account?', cancel_member_registration_path, confirm: 'This action cannot be reversed. Are you sure?' %></li>
 		          <li class="divider"></li>
 		          <li><%= link_to "Sign out", destroy_member_session_path, :method => :delete %></li>
 		        </ul>

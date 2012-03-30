@@ -7,11 +7,15 @@
 #  positions  :string(255)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  member_id  :integer
 #
 
 class Student < ActiveRecord::Base 
 
-# Associations
-has_one :member
+	# Associations
+	belongs_to :member
+
+	# Validations
+	validates :rollnum, presence: { message: 'Roll number is required'}, uniqueness: { message: 'This roll number is already taken'}
 
 end

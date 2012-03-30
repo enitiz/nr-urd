@@ -12,7 +12,10 @@
 
 class Student < ActiveRecord::Base 
 
-# Associations
-belongs_to :member
+	# Associations
+	belongs_to :member
+
+	# Validations
+	validates :rollnum, presence: { message: 'Roll number is required'}, uniqueness: { message: 'This roll number has been already taken'}
 
 end

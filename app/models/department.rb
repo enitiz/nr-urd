@@ -10,7 +10,10 @@
 
 class Department < ActiveRecord::Base
 
-# Associations
-has_one :member
-
+	# Associations
+	has_one :member
+	
+	# Validations
+	validates :name, presence: true
+	
 end

@@ -11,6 +11,7 @@ gem 'annotate', '~> 2.4.1.beta'
 gem 'ancestry'
 gem 'make_voteable'
 gem 'bootstrap-sass', '~> 2.0.1'
+gem 'nokogiri'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,6 +26,15 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :test, :development do
+  gem "rspec-rails"
+end
+
+group :test do
+  gem "capybara"
+  gem "factory_girl"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

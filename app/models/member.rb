@@ -49,4 +49,15 @@ class Member < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   
+  # Validations
+  	validates :name, presence: true
+  	validates :joined_on, presence: { message: 'Please provide the joining year' }
+  	validates :name, length: { in: 5..30 }
+  	validates :joined_on, numericality: 
+  												{ only_integer: true, 
+  													greater_than: 1991,
+  													less_than: 2020 }
+  	validates :department_id, presence: true
+  							
+  
 end

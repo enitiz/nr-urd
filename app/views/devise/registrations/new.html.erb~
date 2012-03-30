@@ -1,5 +1,6 @@
 <%= provide(:title, 'Sign up') %>
 
+<p><%= devise_error_messages! %></p>
 
 <div class="row-fluid">
 	<div class="span4">
@@ -17,7 +18,6 @@
 			<div class="tab-pane fade in active" id="student">
 			
 				<%= form_for(resource, html: { class: "well center" }, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  				<%= devise_error_messages! %>
   				
   				<%= f.text_field :name, placeholder: "Full Name" %><br />
   				<%= f.email_field :email, placeholder: "Email Address" %><br />
@@ -25,7 +25,7 @@
   				<%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br />
   				
   				Joined NIT Raipur on<br />
-  				<%= f.select(:joined_on, ((Time.now.year-40).to_i..(Time.now.year.to_i)).to_a.reverse) %><br />
+  				<%= f.select(:joined_on, ((Time.now.year-20).to_i..(Time.now.year.to_i)).to_a.reverse) %><br />
   				
   				Department<br />
   				<%= f.collection_select :department_id, Department.all, :id, :name %><br />
@@ -43,7 +43,6 @@
 			<div class="tab-pane fade" id="nstudent">
 			
 				<%= form_for(resource, html: { class: "well center" }, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  				<%= devise_error_messages! %>
   				
   				<%= f.text_field :name, placeholder: "Full Name" %><br />
   				<%= f.email_field :email, placeholder: "Email Address" %><br />
@@ -51,10 +50,10 @@
   				<%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br />
   				
   				Joined NIT Raipur on<br />
-  				<%= f.select(:joined_on, ((Time.now.year-40).to_i..(Time.now.year.to_i)).to_a.reverse) %><br />
+  				<%= f.select(:joined_on, ((Time.now.year-20).to_i..(Time.now.year.to_i)).to_a.reverse) %><br />
 				
   				Department<br />
-  				<%= f.collection_select :department_id, Department.all, :id, :name %><br />
+  				<%= f.collection_select :department_id, Department.all, :id, :name, include_blank: 'None' %><br />
   				
 					<% @member.build_nstudent if @member.nstudent.nil? %>
 						<%= f.fields_for :nstudent do |ns| %>
@@ -70,7 +69,7 @@
 							 
 							 <%= ns.text_field :designated_to, placeholder: "Designated to (if dept. unlisted)" %><br />
 							 
-							 <%= ns.text_field :qualification, placeholder: "Qualifications" %><br />
+							 <%= ns.text_field :qualification, placeholder: "Qualifications (Degree)" %><br />
 
 							<%= f.submit "Sign up", class: "btn btn-large btn-primary" %>							 
 						<% end %>

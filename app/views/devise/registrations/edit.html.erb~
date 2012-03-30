@@ -55,7 +55,7 @@
 							 <br /><br />
 							 Designated to (if dept. unlisted)<br />
 							 <%= ns.text_field :designated_to %>
-							 <br />
+							 <br /><br />
 							 Qualifications (Degree)<br />
 							 <%= ns.text_field :qualification %><br />	 
 						<% end %>
