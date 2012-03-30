@@ -57,7 +57,10 @@ class Member < ActiveRecord::Base
   												{ only_integer: true, 
   													greater_than: 1991,
   													less_than: 2020 }
-  	validates :department_id, presence: true
+  	validates :department_id, presence: true, numericality:	
+  																						{ only_integer: true, 
+  											 												greater_than: 0,
+  											 												less_than: 20 }
   							
   
 end

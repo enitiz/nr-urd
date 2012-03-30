@@ -15,7 +15,9 @@ class Student < ActiveRecord::Base
 	# Associations
 	belongs_to :member
 
+	attr_accessible :rollnum, :positions
+	
 	# Validations
-	validates :rollnum, presence: { message: 'Roll number is required'}, uniqueness: { message: 'This roll number has been already taken'}
+	validates :rollnum, presence: { message: 'is required'}, uniqueness: { message: 'already taken' }
 
 end

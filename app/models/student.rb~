@@ -16,6 +16,6 @@ class Student < ActiveRecord::Base
 	belongs_to :member
 
 	# Validations
-	validates :rollnum, presence: { message: 'Roll number is required'}, uniqueness: { message: 'This roll number is already taken'}
+	validates :rollnum, presence: { message: 'is required'}, uniqueness: { message: 'already taken' }
 
 end

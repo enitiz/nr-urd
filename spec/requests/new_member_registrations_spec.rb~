@@ -15,45 +15,92 @@ describe "New Member Registrations" do
    end
 end
 
-describe Student do
+describe Member do
 
 	before do
-		@student = Member.new(name: "Example User",
+		@member = Member.new(name: "Example User",
 													 email: "user@example.com",
 													 password: "exampleuser",
+													 password_confirmation: "exampleuser",
 													 joined_on: "2009",
-													 department_id: "8"
+													 department_id: "8",
 														)
 	end
 	
-	subject{ @student }
+	subject{ @member }
 	
 	it { should respond_to(:name) }
 	it { should respond_to(:email) }
+	it { should respond_to(:password) }
+	it { should respond_to(:password_confirmation) }
+	it { should respond_to(:joined_on) }
+	it { should respond_to(:department_id) }
 	it { should be_valid }
 	
+	# Checking for presence
+	
 	describe "when name is not present" do
-			before { @student.name = " " }
+			before { @member.name = " " }
 			it { should_not be_valid }
 	end
 	
 	describe "when email is not present" do
-			before { @student.email = " " }
+			before { @member.email = " " }
 			it { should_not be_valid }
 	end
 	
 	describe "when password is not present" do
-			before { @student.password = " " }
+			before { @member.password = " " }
+			it { should_not be_valid }
+	end
+	
+	describe "when passwords don't match" do
+			before { @member.password_confirmation = "mismatch" }
 			it { should_not be_valid }
 	end
 	
 	describe "when joined_on is not present" do
-			before { @student.name = " " }
+			before { @member.joined_on = " " }
 			it { should_not be_valid }
 	end
 	
 	describe "when department_id is not present" do
-			before { @student.department_id = nil }
+			before { @member.department_id = nil }
 			it { should_not be_valid }
 	end
+
+	# Limits testing
+	
+	describe "when joined_on is less than 1992" do
+			before { @member.joined_on = "1991" }
+			it { should_not be_valid }
+	end
+	
+	describe "when joined_on is greater than 2020" do
+			before { @member.joined_on = "2021" }
+			it { should_not be_valid }
+	end
+	
+	describe "when department_id is less than 1" do
+			before {	@member.department_id = 0 }
+			it { should_not be_valid }
+	end
+	
+	describe "when department_id is greater than 20" do
+			before {	@member.department_id = 21 }
+			it { should_not be_valid }
+	end
+	
+	# Length testing
+	
+	describe "when name is less than 5 letters" do
+			before { @member.name = "hary" }
+			it { should_not be_valid }
+	end
+	
+	describe "when name is more than 30 letters" do
+			before { @member.name = 'a'*31 }
+			it { should_not be_valid }
+	end
+	
 end	
