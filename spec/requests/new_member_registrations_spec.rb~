@@ -50,7 +50,7 @@ describe Member do
 	end
 	
 	describe "when password is not present" do
-			before { @member.password = " " }
+			before { @member.password = @member.password_confirmation = " " }
 			it { should_not be_valid }
 	end
 	
