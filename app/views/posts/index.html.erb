@@ -51,7 +51,7 @@
 		<div class = "comm right"> <i class="icon-comment"></i> <%= pluralize(post.comments.count, 'comment') %></div>
 		<div class = "time right"> <i class="icon-time"></i> <%= time_ago_in_words(post.created_at) %> ago </div>
 		<div class = "title center"> <%= link_to post.title , post %> </div>
-		<div class = "content"> <%= truncate( post.content, length: 190, omission: '... (continued)') %> </div>
+		<div class = "content"> <%= simple_format(truncate( post.content, length: 190, omission: '... (continued)')) %> </div>
 		<br />
 	</div>
 	<hr />
