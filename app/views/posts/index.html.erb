@@ -11,7 +11,7 @@
 																 	<i class="icon-barcode"></i> <%= post.member.student.rollnum.to_s.rjust(8, '0') %><br />
 																 	<i class="icon-pencil"></i> <%= post.member.name %><br />
 																	<i class="icon-book"></i> <%= post.member.department.name %> (<%= post.member.joined_on %>)<br />
-																	<% if !post.member.student.positions.nil? %>
+																	<% if !post.member.student.positions.empty? %>
 																		<i class="icon-star"></i> <%= post.member.student.positions %> Member<br />
 																	<% end %>
 																	<% if post.member.admin? %>
